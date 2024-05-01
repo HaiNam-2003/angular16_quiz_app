@@ -1,0 +1,196 @@
+<div class="container-login">
+  <div
+    class="content justify-content-center align-items-center d-flex shadow-lg"
+    id="content"
+  >
+    <!-- register -->
+    <div class="col-md-6 d-flex justify-content-center">
+      <form action="" [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+        <div class="header-text mb-4">
+          <h1>Create Account</h1>
+        </div>
+
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            placeholder="Username"
+            class="form-control form-control-lg bg-light fs-6"
+            formControlName="username"
+            value=""
+          />
+        </div>
+        <small
+          *ngIf="username.invalid && (username.dirty || username.touched)"
+          class="block text-danger"
+        >
+          <div class="mb-2" *ngIf="username.errors?.['required']">
+            Username is required
+          </div>
+        </small>
+        <div class="input-group mb-3">
+          <input
+            type="email"
+            placeholder="Email"
+            class="form-control form-control-lg bg-light fs-6"
+            formControlName="email"
+            value=""
+          />
+        </div>
+        <small
+          *ngIf="
+            registerForm.controls['email'].invalid &&
+            (registerForm.controls['email'].dirty ||
+              registerForm.controls['email'].touched)
+          "
+          class="block text-danger"
+        >
+          <div
+            class="mb-2"
+            *ngIf="registerForm.controls['email'].errors?.['required']"
+          >
+            Email is required
+          </div>
+          <div
+            class="mb-2"
+            *ngIf="registerForm.controls['email'].errors?.['email']"
+          >
+            Email should be valid
+          </div>
+        </small>
+        <div class="input-group mb-3">
+          <input
+            type="password"
+            placeholder="Password"
+            class="form-control form-control-lg bg-light fs-6"
+            formControlName="password"
+            value=""
+          />
+        </div>
+        <small
+          *ngIf="
+            registerForm.controls['password'].invalid &&
+            (registerForm.controls['password'].dirty ||
+              registerForm.controls['password'].touched)
+          "
+          class="block text-danger"
+        >
+          <div
+            class="mb-2"
+            *ngIf="registerForm.controls['password'].errors?.['required']"
+          >
+            Password is required
+          </div>
+        </small>
+        <div class="input-group mb-3 justify-content-center">
+          <button
+            class="btn btn--success border-white text-white w-50 fs-6"
+            [disabled]="registerForm.invalid"
+            type="submit"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- login -->
+    <div class="col-md-6 right-box">
+      <form action="" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <div class="header-text mb-4">
+          <h1>Log In</h1>
+        </div>
+
+        <div class="input-group mb-3">
+          <input
+            type="email"
+            placeholder="Email"
+            class="form-control form-control-lg bg-light fs-6"
+            formControlName="email"
+            value=""
+          />
+        </div>
+        <small
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="block text-danger"
+        >
+          <div class="mb-2" *ngIf="email.errors?.['required']">
+            Email is required
+          </div>
+          <div class="mb-2" *ngIf="email.errors?.['email']">
+            Email should be valid
+          </div>
+        </small>
+        <div class="input-group mb-3">
+          <input
+            type="password"
+            placeholder="Password"
+            class="form-control form-control-lg bg-light fs-6"
+            formControlName="password"
+            value=""
+          />
+        </div>
+        <small
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="block text-danger"
+        >
+          <div class="mb-2" *ngIf="password.errors?.['required']">
+            Password is required
+          </div>
+        </small>
+
+        <div class="input-group mb-5 d-flex justify-content-between">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" />
+            <label for="formcheck" class="form-check-label text-secondary">
+              <small>Remember me</small>
+            </label>
+          </div>
+          <div class="forgot">
+            <small>
+              <a href="#">Forgot Password</a>
+            </small>
+          </div>
+        </div>
+
+        <div class="input-group mb-3 justify-content-center">
+          <button
+            class="btn btn--error border-white text-white w-50 fs-6"
+            [disabled]="loginForm.invalid"
+            type="submit"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- switch panel -->
+    <div class="switch-content">
+      <div class="switch">
+        <div class="switch-panel switch-left">
+          <h1>Hello, Again</h1>
+          <p>We are happy to see you back</p>
+          <button
+            class="btn hidden text-white w-50 fs-6"
+            id="login"
+            (click)="switchPanel()"
+          >
+            Login
+          </button>
+        </div>
+
+        <div class="switch-panel switch-right">
+          <h1>Welcome</h1>
+          <p>Join Our Unique Platform, Explore a New Experience</p>
+          <button
+            class="btn hidden text-white w-50 fs-6"
+            id="register"
+            (click)="switchPanel()"
+          >
+            register
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
