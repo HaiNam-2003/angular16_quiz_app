@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { QuizQuestion } from '../interface/question';
+import { QuizQuestion, Data } from '../interface/question';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizService {
-  private url = 'https://53d6-14-174-208-124.ngrok-free.app/pdf';
+  private url = 'http://192.168.1.71:8000/pdf';
 
   constructor(private http: HttpClient) {}
 
@@ -41,10 +41,7 @@ export class QuizService {
   //   // Gửi yêu cầu POST với tệp PDF đã chọn
   //   return this.http.post<any>(this.url, formData);
   // }
-  uploadPDF(formData: FormData): Observable<QuizQuestion[]> {
-    return this.http.post<QuizQuestion[]>(
-      'https://53d6-14-174-208-124.ngrok-free.app/pdf',
-      formData
-    );
+  uploadPDF(formData: FormData): Observable<Data> {
+    return this.http.post<Data>(this.url, formData);
   }
 }

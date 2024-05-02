@@ -1,6 +1,6 @@
 export interface Data {
   status: string;
-  data: QuizQuestion;
+  data: QuizQuestion[];
 }
 
 export interface QuizQuestion {

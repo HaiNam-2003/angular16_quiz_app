@@ -61,9 +61,8 @@ export class HomeComponent {
 
     this.quizService.uploadPDF(formData).subscribe(
       (response) => {
-        console.log('Server response:', response);
-
-        this.quizComponent.questions = response;
+        console.log(response);
+        this.quizComponent.questions = response.data;
         console.log(this.quizComponent.questions[0]);
         this.quizComponent.reset();
         this.quizComponent.showQuestion(0);

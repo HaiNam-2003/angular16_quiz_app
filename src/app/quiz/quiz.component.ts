@@ -28,8 +28,9 @@ export class QuizComponent {
   }
 
   showQuestion(index: number): void {
-    this.selected = this.questions[index].data[index];
-    console.log(this.selected?.question);
+    this.selected = this.questions[index];
+    console.log(this.selected);
+    console.log(this.selected?.answer);
   }
 
   nextQuestion(): void {
@@ -44,9 +45,30 @@ export class QuizComponent {
     }
   }
 
+  // checkAnswer(): void {
+  //   if (this.selected && this.selected.answer !== undefined) {
+  //     console.log(this.selected.answer);
+  //     const isAnswerCorrect = this.selected.answer == this.answer;
+  //     console.log(this.answer);
+  //     console.log(this.selected.answer == this.answer);
+  //     console.log(this.selected.answer, isAnswerCorrect);
+  //     if (isAnswerCorrect) {
+  //       this.result.correct++;
+  //     } else {
+  //       this.result.wrong++;
+  //     }
+  //   }
+  // }
   checkAnswer(): void {
-    if (this.selected && this.selected.answer) {
-      const isAnswerCorrect = this.selected.answer === this.answer;
+    if (this.selected && typeof this.selected.answer === 'string') {
+      const selectedAnswer = this.selected.answer.trim();
+      const enteredAnswer = this.answer.trim();
+      console.log(selectedAnswer);
+      console.log(enteredAnswer);
+
+      const isAnswerCorrect = selectedAnswer === enteredAnswer;
+      console.log(isAnswerCorrect);
+
       if (isAnswerCorrect) {
         this.result.correct++;
       } else {
