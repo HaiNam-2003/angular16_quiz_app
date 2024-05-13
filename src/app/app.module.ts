@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { HomeComponent } from './home/home.component';
     ResultComponent,
     RegistractionComponent,
     HomeComponent,
+    SidebarComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
