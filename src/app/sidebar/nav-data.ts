@@ -7,6 +7,6 @@ export const navbarData = [
   {
     routeLink: '',
     icon: 'fa-solid fa-right-to-bracket',
-    label: 'Login',
+    label: 'Logout',
   },
 ];

@@ -20,6 +20,13 @@ export class AuthService {
   //   return this.http.post<any>(`${this.url}/login`, data);
   // }
 
+  isLoggedIn = false;
+
+  // Phương thức kiểm tra trạng thái đăng nhập
+  isAuthenticated(): boolean {
+    return this.isLoggedIn;
+  }
+
   saveUser(data: User): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       axios
@@ -45,6 +52,7 @@ export class AuthService {
         .catch((error: any) => {
           observer.error(error);
         });
+      this.isLoggedIn = true;
     });
   }
 }

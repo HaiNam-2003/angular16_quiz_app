@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { QuizComponent } from '../quiz/quiz.component';
 import { ResultComponent } from '../result/result.component';
 import { QuizService } from '../services/quiz.service';
+import { SideNavToggle } from '../interface/sidenav';
 
 @Component({
   selector: 'app-home',
@@ -18,24 +19,6 @@ export class HomeComponent {
   @ViewChild(ResultComponent) resultComponent!: ResultComponent;
 
   constructor(private quizService: QuizService) {}
-
-  // quizQuestions(formData: FormData): void {
-  //   this.toggleSpinner();
-  //   this.quizService.uploadPDF(formData).subscribe((response) => {
-  //     if (response && response.length > 0) {
-  //       this.quizComponent.questions = response;
-  //       console.log(this.quizComponent.questions[0].data[0]);
-  //       this.quizComponent.reset();
-  //       this.quizComponent.showQuestion(0);
-  //       this.showMainMenu = false;
-  //       this.showQuizScreen = true;
-  //       this.toggleSpinner();
-  //     } else {
-  //       console.error('No quiz questions received from the API.');
-  //     }
-  //     this.toggleSpinner();
-  //   });
-  // }
 
   handleFileInput(event: any) {
     this.toggleSpinner();
