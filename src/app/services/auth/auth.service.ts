@@ -12,14 +12,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // saveUser(data: User): Observable<any> {
-  //   return this.http.post<any>(`${this.url}/register`, data);
-  // }
-
-  // login(data: User): Observable<any> {
-  //   return this.http.post<any>(`${this.url}/login`, data);
-  // }
-
   isLoggedIn = false;
 
   // Phương thức kiểm tra trạng thái đăng nhập
@@ -54,5 +46,10 @@ export class AuthService {
         });
       this.isLoggedIn = true;
     });
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('data');
   }
 }

@@ -1,14 +1,22 @@
 <div id="quiz" class="section">
+  <app-sidebar (onToggleSideNav)="onToggleSideNav($event)"></app-sidebar>
+
   <div class="section-center">
     <div class="container">
+      <app-history
+        #history
+        [style.display]="showHistoryScreen ? 'block' : 'none'"
+      ></app-history>
       <app-quiz
         #quiz
         [style.display]="showQuizScreen ? 'block' : 'none'"
         (finalResult)="finalResult($event)"
+        (showMainMenuFromQuizz)="showMainMenuFromQuizz($event)"
       ></app-quiz>
       <app-result
         #result
         [style.display]="showResultScreen ? 'block' : 'none'"
+        (showHistoryScreen)="showHistoryScreenFromSidebar($event)"
         (showMainMenuScreen)="showMainMenuScreen($event)"
       ></app-result>
       <div

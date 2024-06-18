@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { QuizQuestion, Data } from './../interface/question';
 import { QuizService } from '../services/quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -9,6 +10,7 @@ import { QuizService } from '../services/quiz.service';
 })
 export class QuizComponent {
   @Output() finalResult = new EventEmitter();
+  @Output() showMainMenuFromQuizz = new EventEmitter();
 
   public questions: Array<any>;
   public selected: QuizQuestion | null = null;
@@ -22,7 +24,7 @@ export class QuizComponent {
   public index: number = 0;
   public answer: string = '';
 
-  constructor(private quizService: QuizService) {
+  constructor(private quizService: QuizService, private router: Router) {
     this.questions = [];
     this.reset();
   }
@@ -30,12 +32,17 @@ export class QuizComponent {
   showQuestion(index: number): void {
     this.selected = this.questions[index];
     console.log(this.selected);
-    console.log(this.selected?.answer);
+  }
+
+  showMainMenu() {
+    this.showMainMenuFromQuizz.emit(true);
   }
 
   nextQuestion(): void {
     if (!this.answer || !this.selected) return;
     this.checkAnswer();
+    console.log(this.index, this.answer);
+    this.addChoiceToQuestion(this.index, this.answer);
     this.index++;
     if (this.questions.length > this.index) {
       this.answer = '';
@@ -44,27 +51,10 @@ export class QuizComponent {
       this.finishQuiz();
     }
   }
-
-  // checkAnswer(): void {
-  //   if (this.selected && this.selected.answer !== undefined) {
-  //     console.log(this.selected.answer);
-  //     const isAnswerCorrect = this.selected.answer == this.answer;
-  //     console.log(this.answer);
-  //     console.log(this.selected.answer == this.answer);
-  //     console.log(this.selected.answer, isAnswerCorrect);
-  //     if (isAnswerCorrect) {
-  //       this.result.correct++;
-  //     } else {
-  //       this.result.wrong++;
-  //     }
-  //   }
-  // }
   checkAnswer(): void {
     if (this.selected && typeof this.selected.answer === 'string') {
-      const selectedAnswer = this.selected.answer.trim();
-      const enteredAnswer = this.answer.trim();
-      console.log(selectedAnswer);
-      console.log(enteredAnswer);
+      const selectedAnswer = this.selected.answer.trim(); // anwser correct
+      const enteredAnswer = this.answer.trim(); // user selected anwser
 
       const isAnswerCorrect = selectedAnswer === enteredAnswer;
       console.log(isAnswerCorrect);
@@ -82,6 +72,8 @@ export class QuizComponent {
     this.result.correctPercentage =
       (this.result.correct / this.result.total) * 100;
     this.result.wrongPercentage = (this.result.wrong / this.result.total) * 100;
+
+    localStorage.setItem('data', JSON.stringify(this.questions));
 
     this.finalResult.emit(this.result);
   }
@@ -101,5 +93,15 @@ export class QuizComponent {
 
   getChoicesKeys(): string[] {
     return this.selected?.choices ? Object.keys(this.selected.choices) : [];
+  }
+
+  addChoiceToQuestion(questionIndex: any, choice: any) {
+    // Kiểm tra chỉ số câu hỏi có hợp lệ không
+    if (questionIndex >= 0 && questionIndex < this.questions.length) {
+      this.questions[questionIndex]['choice'] = choice;
+      console.log(this.questions);
+    } else {
+      console.error('Invalid question index');
+    }
   }
 }

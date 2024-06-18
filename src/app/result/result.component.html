@@ -50,9 +50,18 @@
             </div>
             <br />
             <div class="form-btn text-center">
-              <button class="submit-btn" (click)="showMainMenu()">
+              <button class="submit-btn ml-2" (click)="showMainMenu()">
                 Main Menu
               </button>
+              <button
+                class="submit-btn ml-2"
+                (click)="saveDataFromLocalStorage()"
+              >
+                Save
+              </button>
+              <!-- <button class="submit-btn" (click)="showHistory()">
+                Show History
+              </button> -->
             </div>
           </div>
         </div>

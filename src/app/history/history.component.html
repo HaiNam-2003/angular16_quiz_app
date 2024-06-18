@@ -1,0 +1,42 @@
+<div class="row justify-content-md-center">
+  <div class="col-md-9 mx-auto">
+    <div class="quiz-form">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group" *ngIf="selected">
+            <h1>Quiz</h1>
+            <hr />
+            <p>
+              <b>{{ index + 1 }}.</b> {{ selected.question }}
+            </p>
+            <div *ngFor="let choice of getChoicesKeys()">
+              <input
+                type="radio"
+                [id]="choice"
+                class="btn-check"
+                name="answer"
+                autocomplete="off"
+                [value]="choice"
+                [(ngModel)]="answer"
+              />
+              <label
+                [class]="
+                  'btn btn-outline-success ' +
+                  (answer === choice ? 'active' : '')
+                "
+                [for]="choice"
+                >{{ selected.choices[choice] }}</label
+              >
+              <br /><br />
+            </div>
+          </div>
+          <div class="form-btn">
+            <button class="submit-btn" (click)="nextQuestion()">
+              {{ index + 1 === questions.length ? "Finish" : "Next" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

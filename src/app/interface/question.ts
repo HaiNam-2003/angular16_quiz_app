@@ -10,3 +10,12 @@ export interface QuizQuestion {
   };
   answer: string;
 }
+
+export interface DataQuestion {
+  question: string;
+  choices: {
+    [key: string]: string;
+  };
+  answer: string;
+  choice: string;
+}

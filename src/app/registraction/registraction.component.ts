@@ -22,6 +22,8 @@ export class RegistractionComponent {
     password: ['', Validators.required],
   });
 
+  public token: any;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -88,13 +90,16 @@ export class RegistractionComponent {
 
     this.authService.login(userData).subscribe(
       (response) => {
-        console.log(response.data.message);
+        // console.log(response.data.message);
+        console.log(response.data.token);
+        this.token = response.data.token;
         if (response.data.message === 'Login Success') {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
             detail: 'Login Success',
           });
+          localStorage.setItem('token', this.token);
           this.router.navigate(['/home']);
         } else if (response.data.message === 'Password not match') {
           this.messageService.add({

@@ -70,6 +70,10 @@
     width: 100%;
     margin-bottom: 0.625rem;
 
+    .sidenav-nav-link:nth-last-child(1) {
+      text-align: end;
+    }
+
     .sidenav-nav-link {
       display: flex;
       align-items: center;
@@ -79,6 +83,7 @@
       color: #f3f3f3;
       text-decoration: none;
       transition: all .3s ease;
+
 
       .sidenav-link-icon {
         font-size: 24px;
@@ -92,6 +97,7 @@
         margin-left: 1.5rem;
       }
     }
+
   }
 
 

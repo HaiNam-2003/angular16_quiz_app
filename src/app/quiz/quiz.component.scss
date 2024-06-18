@@ -1,0 +1,32 @@
+.tooltip-container {
+  --background: #d87639;
+  position: relative;
+  background: var(--background);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 17px;
+  padding: 0.7em 1.8em;
+  border-radius: 0.2rem;
+  max-width: 200px;
+}
+
+.tooltip {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%) rotateX(90deg);
+  padding: 0.6em;
+  opacity: 0.6;
+  transition: all 0.5s ease;
+  background: transparent;
+  height: 0px;
+  cursor: default;
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  background: none;
+  transform: translateX(-50%) rotateX(0deg);
+}
+
